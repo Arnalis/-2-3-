@@ -9,13 +9,13 @@ class TestIsValidArray(unittest.TestCase):
     """
 
     def setUp(self):
-        #Счётчики для итогового отчёта
+        #Счётчики для отчёта
         self.covered_paths = []
 
     def check_result(self, description, input_data, expected, actual, path):
         """
-        Печатает подробный отчёт по одному тесту и проверяет результат.
-        path — покрытый путь в графе.
+        Печатает подробный отчёт по одному тесту и проверяет результат
+        path — покрытый путь в графе
         """
         print(f"  Тест: {description}")
         print(f"    Входные данные: {input_data}")
@@ -28,7 +28,7 @@ class TestIsValidArray(unittest.TestCase):
         self.covered_paths.append(path)
         self.assertEqual(actual, expected)
 
-    #Тест 1. Покрывает путь [1, 2, 4, 6, 7] — оба условия ложны
+    #тест 1: покрывает путь [1, 2, 4, 6, 7] — означает, что оба условия - false
     def test_valid_array(self):
         self.check_result(
             "Валидный массив",
@@ -38,7 +38,7 @@ class TestIsValidArray(unittest.TestCase):
             "[1, 2, 4, 6, 7]"
         )
 
-    #Тест 2. Покрывает путь [1, 2, 3, 7] — первое условие истинно
+    #тест 2: покрывает путь [1, 2, 3, 7] — означает, что первое условие - true
     def test_duplicates(self):
         self.check_result(
             "Массив с дубликатами",
@@ -48,7 +48,7 @@ class TestIsValidArray(unittest.TestCase):
             "[1, 2, 3, 7]"
         )
 
-    #Тест 3. Покрывает путь [1, 2, 4, 5, 7] — второе условие истинно
+    #тест 3: покрывает путь [1, 2, 4, 5, 7] — означает, что второе условие - true
     def test_out_of_range(self):
         self.check_result(
             "Число превышает предел 10^9",
@@ -58,7 +58,7 @@ class TestIsValidArray(unittest.TestCase):
             "[1, 2, 4, 5, 7]"
         )
 
-    #Тест 4. Граница диапазона — модуль ровно 10^9
+    #тест 4: граница диапазона = |10^9|
     def test_negative_at_boundary(self):
         self.check_result(
             "Отрицательное число на границе",
@@ -68,7 +68,7 @@ class TestIsValidArray(unittest.TestCase):
             "[1, 2, 4, 6, 7]"
         )
 
-    #Тест 5. Ровно на верхней границе
+    #тест 5: ровно на верхней границе
     def test_exactly_max_value(self):
         self.check_result(
             "Значение ровно 10^9",
@@ -78,7 +78,7 @@ class TestIsValidArray(unittest.TestCase):
             "[1, 2, 4, 6, 7]"
         )
 
-    #Тест 6. Массив из одного элемента
+    #тест 6: массив из одного элемента
     def test_single_element(self):
         self.check_result(
             "Массив из одного элемента",
@@ -88,7 +88,7 @@ class TestIsValidArray(unittest.TestCase):
             "[1, 2, 4, 6, 7]"
         )
 
-    #Тест 7. Дубликаты с выходом за диапазон — первое условие срабатывает раньше
+    #тест 7: дубликаты с выходом за диапазон, где первое условие срабатывает раньше
     def test_duplicates_and_overflow(self):
         self.check_result(
             "Дубликаты и превышение одновременно",
@@ -98,7 +98,7 @@ class TestIsValidArray(unittest.TestCase):
             "[1, 2, 3, 7]"
         )
 
-    #Тест 8. Пустой массив — граничный случай
+    #тест 8: пустой массив — граничный случай
     def test_empty_array(self):
         self.check_result(
             "Пустой массив",
