@@ -4,8 +4,8 @@ from main import is_valid_array
 
 class TestIsValidArray(unittest.TestCase):
     """
-    Тестирование функции is_valid_array графовым покрытием.
-    Покрываются все вершины, рёбра, пары рёбер и основные пути.
+    Тестирование функции is_valid_array графовым покрытием
+    Покрываются все вершины, рёбра, пары рёбер и основные пути
     """
 
     def setUp(self):
