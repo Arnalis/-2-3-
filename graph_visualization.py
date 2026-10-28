@@ -37,7 +37,6 @@ def draw_single_path(graph, labels, path, color, filename, title):
 
     plt.figure(figsize=(10, 8))
 
-    # Цвета вершин: старт — зелёный, выход — красный, остальные — голубые
     node_colors = []
     for node in graph.nodes():
         if node == 1:
