@@ -30,10 +30,6 @@ def build_graph():
 
 
 def draw_single_path(graph, labels, path, color, filename, title):
-    """
-    Рисует граф, выделяя только один заданный путь.
-    Подписи (да/нет) ставятся только на рёбра этого пути и окрашиваются в его цвет.
-    """
     positions = {
         1: (0, 4), 2: (0, 3), 3: (-2, 2), 4: (0, 2),
         5: (-1.5, 1), 6: (1.5, 1), 7: (0, 0),
@@ -51,18 +47,18 @@ def draw_single_path(graph, labels, path, color, filename, title):
         else:
             node_colors.append("#aaccff")
 
-    # 1. Базовый слой — серые стрелки без подписей
+    #  серые стрелки без подписей
     nx.draw_networkx_edges(graph, positions, edge_color="lightgray",
                            arrows=True, arrowsize=15, width=1.0, node_size=2500)
 
-    # 2. Выделяем ребра текущего пути
+    #  ребра текущего пути
     path_edges = list(zip(path[:-1], path[1:]))
     nx.draw_networkx_edges(graph, positions, edgelist=path_edges,
                            edge_color=color, arrows=True, arrowsize=25,
                            width=3.5, node_size=2500,
-                           connectionstyle="arc3,rad=0.1") # Легкий изгиб, чтобы стрелку было видно
+                           connectionstyle="arc3,rad=0.1") 
 
-    # 3. Подписи только для ребер выделенного пути
+
     edge_labels = {}
     for u, v in path_edges:
         lbl = graph.edges[u, v].get("label", "")
@@ -70,14 +66,13 @@ def draw_single_path(graph, labels, path, color, filename, title):
             edge_labels[(u, v)] = lbl
 
     if edge_labels:
-        # label_pos=0.4 ставит текст ближе к началу ребра, чтобы не налезал на вершину
         nx.draw_networkx_edge_labels(graph, positions, edge_labels=edge_labels,
                                      font_size=12, font_color=color,
                                      font_weight="bold", label_pos=0.4,
                                      bbox=dict(boxstyle="round,pad=0.2",
                                                fc="white", ec=color, alpha=0.9))
 
-    # 4. Вершины и их подписи
+    #  Вершины и их подписи
     nx.draw_networkx_nodes(graph, positions, node_color=node_colors,
                            node_size=2500, edgecolors="black")
     nx.draw_networkx_labels(graph, positions, labels=labels, font_size=9)
@@ -93,7 +88,7 @@ def draw_single_path(graph, labels, path, color, filename, title):
 def main():
     graph, labels = build_graph()
 
-    # Пути: (список вершин, цвет, имя файла, заголовок)
+    # Пути
     paths_info = [
         (
             [1, 2, 3, 7],
